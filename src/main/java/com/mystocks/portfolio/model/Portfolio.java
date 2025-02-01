@@ -39,4 +39,5 @@ public class Portfolio {
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Transaction> transactionList;
+
 }
