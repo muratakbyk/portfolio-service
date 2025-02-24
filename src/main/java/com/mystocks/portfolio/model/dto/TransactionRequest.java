@@ -7,7 +7,8 @@ import java.time.LocalDateTime;
 
 public record TransactionRequest(Long portfolioId,
                                  TransactionType transactionType,
-                                 BigDecimal amount,
+                                 BigDecimal transactionCost,
                                  LocalDateTime transactionDate,
-                                 String stockCode) {
+                                 String stockCode,
+                                 Integer stockQuantity) {
 }

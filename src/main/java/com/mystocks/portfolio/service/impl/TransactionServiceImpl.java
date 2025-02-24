@@ -3,31 +3,35 @@ package com.mystocks.portfolio.service.impl;
 import com.mystocks.portfolio.model.Portfolio;
 import com.mystocks.portfolio.model.Transaction;
 import com.mystocks.portfolio.model.dto.TransactionRequest;
-import com.mystocks.portfolio.repo.PortfolioRepository;
 import com.mystocks.portfolio.repo.TransactionRepository;
+import com.mystocks.portfolio.service.PortfolioService;
 import com.mystocks.portfolio.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
 public class TransactionServiceImpl implements TransactionService{
 
     private final TransactionRepository transactionRepository;
-    private final PortfolioRepository portfolioRepository;
+    private final PortfolioService portfolioService;
 
     @Override
     public Transaction createTransaction(TransactionRequest transactionRequest) {
-        Portfolio portfolio = portfolioRepository.findById(transactionRequest.portfolioId())
-                .orElseThrow(() -> new RuntimeException("Portfolio does not exist."));
+        Portfolio portfolio = portfolioService.getPortfolioById(transactionRequest.portfolioId());
+
         return transactionRepository.save(Transaction.builder()
                 .transactionDate(transactionRequest.transactionDate())
-                .amount(transactionRequest.amount())
+                .transactionCost(transactionRequest.transactionCost())
+                .stockQuantity(transactionRequest.stockQuantity())
                 .transactionType(transactionRequest.transactionType())
                 .stockCode(transactionRequest.stockCode())
                 .portfolio(portfolio)
+                .lotPrice(transactionRequest.transactionCost().divide(BigDecimal.valueOf(transactionRequest.stockQuantity())))
                 .build());
     }
+
+
 }

@@ -5,5 +5,6 @@ import com.mystocks.portfolio.model.dto.PortfolioRequest;
 import com.mystocks.portfolio.model.Portfolio;
 
 public interface PortfolioService {
-     Portfolio createPortfolio(PortfolioRequest portfolioRequest, Long userId);
+     Portfolio createPortfolio(PortfolioRequest portfolioRequest);
+     Portfolio getPortfolioById(Long portfolioId);
 }
