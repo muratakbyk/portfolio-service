@@ -5,4 +5,5 @@ import com.mystocks.portfolio.model.dto.TransactionRequest;
 
 public interface TransactionService {
     Transaction createTransaction(TransactionRequest transactionRequest);
+    Transaction deleteTransaction(Long trasactionId);
 }

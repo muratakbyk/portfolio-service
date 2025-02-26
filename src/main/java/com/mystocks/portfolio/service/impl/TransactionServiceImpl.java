@@ -1,6 +1,5 @@
 package com.mystocks.portfolio.service.impl;
 
-import com.mystocks.portfolio.model.Portfolio;
 import com.mystocks.portfolio.model.Transaction;
 import com.mystocks.portfolio.model.dto.TransactionRequest;
 import com.mystocks.portfolio.repo.TransactionRepository;
@@ -20,7 +19,7 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Override
     public Transaction createTransaction(TransactionRequest transactionRequest) {
-        Portfolio portfolio = portfolioService.getPortfolioById(transactionRequest.portfolioId());
+        //Portfolio portfolio = portfolioService.getPortfolioById(transactionRequest.portfolioId());
 
         return transactionRepository.save(Transaction.builder()
                 .transactionDate(transactionRequest.transactionDate())
@@ -28,9 +27,14 @@ public class TransactionServiceImpl implements TransactionService{
                 .stockQuantity(transactionRequest.stockQuantity())
                 .transactionType(transactionRequest.transactionType())
                 .stockCode(transactionRequest.stockCode())
-                .portfolio(portfolio)
+             //   .portfolio(portfolio)
                 .lotPrice(transactionRequest.transactionCost().divide(BigDecimal.valueOf(transactionRequest.stockQuantity())))
                 .build());
+    }
+    @Override
+    public Transaction deleteTransaction(Long transactionId){
+        transactionRepository.deleteById(transactionId);
+        return new Transaction();
     }
 
 

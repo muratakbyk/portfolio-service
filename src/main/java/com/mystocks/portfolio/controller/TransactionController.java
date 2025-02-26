@@ -18,4 +18,9 @@ public class TransactionController {
     public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionRequest transactionRequest) {
         return ResponseEntity.ok(transactionService.createTransaction(transactionRequest));
     }
+
+    @GetMapping("/deleteTransaction")
+    public ResponseEntity<Transaction> deleteTransaction(@RequestParam Long transactionId) {
+        return ResponseEntity.ok(transactionService.deleteTransaction(transactionId));
+    }
 }
