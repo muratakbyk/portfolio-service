@@ -1,6 +1,5 @@
 package com.mystocks.portfolio.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mystocks.portfolio.model.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;

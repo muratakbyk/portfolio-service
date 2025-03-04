@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -35,9 +34,9 @@ public class PortfolioServiceImpl implements PortfolioService {
     }
 
     @Override
-    public PortfolioResponse getPortfolioById(Long portfolioId) {
-        //Optional<Portfolio> portfolio = portfolioRepository.findById(portfolioId);
-        return new PortfolioResponse("",1L,true);
+    public Portfolio getPortfolioById(Long portfolioId) {
+        Optional<Portfolio> portfolio = portfolioRepository.findById(portfolioId);
+        return  portfolio.get();
     }
 
 }

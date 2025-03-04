@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 public interface PortfolioMapper {
 
     @Mapping(source = "portfolioName", target = "portfolioName")
-    @Mapping(source = "userId", target = "userId")
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "portfolioActive", target = "isPortfolioActive")
     PortfolioResponse toResponse(Portfolio portfolio);
 
